@@ -28,9 +28,9 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     customLaunchers: {
-      ChromeDebug: {
-        base: 'Chrome',
-        flags: [ '--remote-debugging-port=9333' ]
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
       }
     },
     restartOnFileChange: true
