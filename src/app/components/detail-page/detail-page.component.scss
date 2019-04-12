@@ -1,0 +1,20 @@
+.hero-detail {
+  .hero-img-block {
+    max-width: 400px;
+  }
+  .comic-detail-wrapper {
+    max-height: 500px;
+    overflow-y: scroll;
+    .comic-detail {
+      display: flex;
+      .comic-image-block {
+        width: 100px;
+        min-width: 100px;
+        height: auto;
+        >img {
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div class="container comic-wrapper my-4">
+  <app-loading [hidden]="selectedComic"></app-loading>
+  <div class="comic" *ngIf="selectedComic">
+    <div class="comic-header row">
+      <div class="col-12 col-md-auto">
+        <div class="header-image" *ngIf="thumbnailPath">
+          <img class="mb-3 img-fluid" src="{{thumbnailPath}}" alt="">
+        </div>
+      </div>
+      <div class="col-12 col-md">
+        <div class="comic-header-content ml-3 ">
+          <h4 class="title">{{selectedComic.title}}</h4>
+          <p class="description">{{selectedComic.description ? selectedComic.description : emptyDescription}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="comic-detail">
+      <div class="row">
+        <div class="creators col-12 col-md">
+          <h5 class="title">Creators</h5>
+          <ul>
+            <li class="detail circle-decoration" *ngFor="let creator of selectedComic?.creators?.items">{{creator?.name}}
+              ({{creator?.role}})</li>
+          </ul>
+        </div>
+        <div class="characters col-12 col-md">
+          <h5 class="title">Characters</h5>
+          <ul>
+            <li class="detail circle-decoration" *ngFor="let character of selectedComic?.characters?.items">
+              {{character?.name}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container hero-detail d-flex justify-content-center my-4">
+  <app-loading [hidden]="heroDetail"></app-loading>
+  <div class="mb-3 pb-5 mx-2 w-100" *ngIf="heroDetail">
+    <div class="row">
+      <div class="hero-img-block">
+        <a class="d-block col-12 col-md-auto">
+          <img class="mb-3 img-fluid hero-img" src="{{getThumbnailPath(heroDetail)}}" alt="">
+        </a>
+      </div>
+      <div class="hero-info-header ml-3 col-12 col-md">
+        <h4 class="title">{{heroDetail.name}}</h4>
+        <p class="detail">{{heroDetail.description ? heroDetail.description : AppConfig.EMPTY_DESCRIPTION}}</p>
+      </div>
+    </div>
+    <app-loading [hidden]="comics"></app-loading>
+    <div class="comic-detail-wrapper mt-3" *ngIf="comics">
+      <div infiniteScroll infiniteScrollDistance="5"
+        [infiniteScrollThrottle]="50"
+        [infiniteScrollDisabled]="!hasMoreComics"
+        (scrolled)="onScroll()">
+        <div *ngFor="let comic of comics; index as i">
+          <div class="comic-detail">
+            <div class="comic-image-block">
+              <a class="d-block" routerLink="/{{heroDetail.id}}/{{comic.id}}">
+                <img class="mb-3 img-fluid" src="{{getThumbnailPath(comic)}}" alt="">
+              </a>
+            </div>
+            <div class="comic-info ml-3">
+              <h5 class="title">{{i + 1}}. {{comic.title}}</h5>
+              <p class="detail">
+                {{comic.description ?
+                  comic.description.length > AppConfig.MAX_DESCRIPTION_CHARACTERS ? (comic.description | slice:0:AppConfig.MAX_DESCRIPTION_CHARACTERS)+'...' : comic.description : AppConfig.EMPTY_DESCRIPTION}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-loading [hidden]="!isLoading" *ngIf="comics"></app-loading>
+  </div>
+</div>

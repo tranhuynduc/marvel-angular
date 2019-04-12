@@ -1,0 +1,8 @@
+.hero-list {
+  .hero-image-table {
+    width: 100px;
+    > img {
+      cursor: pointer;
+    }
+  }
+}

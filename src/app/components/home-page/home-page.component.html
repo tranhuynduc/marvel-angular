@@ -1,0 +1,42 @@
+<div class="container pt-4 mb-3 pb-5">
+  <app-loading [hidden]="heroes"></app-loading>
+  <div class="">
+    <div class="hero-list" *ngIf="heroes" infiniteScroll infiniteScrollDistance="0" [infiniteScrollThrottle]="50"
+      [infiniteScrollDisabled]="!hasMoreHeroes" (scrolled)="onScroll()">
+      <div class="bg-dark">
+        <div class="row py-3 d-none d-md-flex">
+          <div class="col-md-3">
+            <p class="font-weight-bold text-light pl-3">Name</p>
+          </div>
+          <div class="col">
+            <p class="font-weight-bold text-light pl-3">Description</p>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 border" *ngFor="let hero of heroes">
+        <div class="row ">
+          <div class="col-12 py-3 col-md-3 border-right">
+            <p class="d-inline-block">{{hero.name}}</p>
+          </div>
+          <div class="col-12 col-md">
+            <div class="row">
+              <div class="col-12 col-md py-3">
+                <p>
+                  {{hero.description ? 
+                    hero.description.length > AppConfig.MAX_DESCRIPTION_CHARACTERS 
+                    ? (hero.description | slice:0:AppConfig.MAX_DESCRIPTION_CHARACTERS)+'...' : hero.description : AppConfig.EMPTY_DESCRIPTION}}
+                </p>
+              </div>
+              <div class="col-12 col-md-auto py-3">
+                <a routerLink="/{{hero.id}}" class="d-block hero-image-table">
+                  <img class="img-fluid" src="{{getThumbnailPath(hero)}}" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-loading [hidden]="!isLoading" *ngIf="heroes"></app-loading>
+</div>

@@ -1,0 +1,10 @@
+.comic-title {
+  .comic-image-block {
+    width: 300px;
+    min-width: 300px;
+    height: auto;
+    >img {
+      border-radius: 5px;
+    }
+  }
+}
