@@ -1,0 +1,19 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "marvel-angular",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
