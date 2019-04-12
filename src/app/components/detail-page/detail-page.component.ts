@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MarvelService } from 'src/app/services/marvel.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppConfig } from '../../configs';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-detail-page',
   templateUrl: './detail-page.component.html',
@@ -32,7 +34,7 @@ export class DetailPageComponent implements OnInit {
       if (res) {
         this.heroDetail = res;
         this.thumbnailPath = this.marvelService.getThumbnailPath(res.thumbnail.path, res.thumbnail.extension);
-        this.comicsURI = res.comics.collectionURI;
+        this.comicsURI = `${environment.marvelApiUrl}/characters/${id}/comics`;
         this.getComics();
       }
     });
